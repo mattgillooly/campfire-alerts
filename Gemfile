@@ -26,3 +26,5 @@ group :test do
 end
 
 gem 'pg'
+gem 'nokogiri'
+gem 'tinder'

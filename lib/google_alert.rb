@@ -2,7 +2,11 @@ require 'nokogiri'
 
 class GoogleAlert
 
-  Result = Struct.new(:link, :title, :source, :blurb)
+  class Result < Struct.new(:link, :title, :source, :blurb)
+    def to_s
+      "#{title} #{link}"
+    end
+  end
 
   attr_reader :results
 
