@@ -5,9 +5,11 @@ class PostmarkCallbacksController < ApplicationController
   def create
     logger.info "received web hook from Postmark"
 
+    email_body = CGI.unescapeHTML(params['HtmlBody'])
+
     email = Email.create!(subject: params['Subject'],
-                          body: params['HtmlBody'],
-                          from: params['From'])
+                          from: params['From'],
+                          body: email_body)
 
     AlertProcessor.new.call(email.body)
 
