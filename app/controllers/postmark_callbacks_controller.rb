@@ -4,7 +4,13 @@ class PostmarkCallbacksController < ApplicationController
 
   def create
     logger.info "received web hook from Postmark"
-    AlertProcessor.new.call(params['HtmlBody'])
+
+    email = Email.create!(subject: params['Subject'],
+                          body: params['HtmlBody'],
+                          from: params['From'])
+
+    AlertProcessor.new.call(email.body)
+
     head :ok
   end
 
