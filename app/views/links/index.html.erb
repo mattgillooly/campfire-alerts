@@ -1,0 +1,15 @@
+<h1>Links</h1>
+
+<% @links.each do |link| %>
+  <h2><%= link_to link.title, link.url %></h2>
+
+  <% if link.source %>
+    <cite><%= link.cite %></cite>
+  <% end %>
+
+  <% if link.blurb %>
+    <p><%= link.blurb %></p>
+  <% end %>
+
+  <p><%= link.created_at %></p>
+<% end %>
