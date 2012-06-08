@@ -4,7 +4,7 @@ end
 
 When /^Postmark notifies us of the inbound email$/ do
   post postmark_callbacks_path,
-       SendgridSimulator.body(@google_alert_html),
+       PostmarkSimulator.body(@google_alert_html),
        "CONTENT_TYPE" => 'application/json'
 end
 

@@ -27,7 +27,9 @@ describe PostmarkCallbacksController do
 
     AlertProcessor.any_instance.should_receive(:call).with(alert_body)
 
-    post :create
+    post :create,
+         'HtmlBody' => ''
+
     response.should be_success
   end
 
