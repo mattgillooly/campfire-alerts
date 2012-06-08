@@ -5,7 +5,7 @@ class PostmarkCallbacksController < ApplicationController
   def create
     logger.info "received web hook from Postmark"
 
-    email_body = CGI.unescapeHTML(params['HtmlBody'])
+    email_body = params['HtmlBody']
 
     email = Email.create!(subject: params['Subject'],
                           from: params['From'],
