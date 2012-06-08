@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607232622) do
+ActiveRecord::Schema.define(:version => 20120608005737) do
 
   create_table "emails", :force => true do |t|
     t.string   "subject",    :null => false
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20120607232622) do
   create_table "links", :force => true do |t|
     t.string   "url",        :null => false
     t.string   "title",      :null => false
-    t.string   "source",     :null => false
-    t.text     "blurb",      :null => false
+    t.string   "source"
+    t.text     "blurb"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

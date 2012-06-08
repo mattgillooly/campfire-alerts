@@ -17,6 +17,8 @@ describe AlertProcessor do
     chatter.should_receive(:post_link).with(r1.to_s)
     chatter.should_receive(:post_link).with(r2.to_s)
 
+    Link.should_receive(:create!).twice
+
     subject.call(html)
   end
 
