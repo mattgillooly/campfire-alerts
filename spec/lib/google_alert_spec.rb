@@ -3,8 +3,27 @@ require 'google_alert'
 
 describe GoogleAlert do
 
-  it "parses a Google Alerts HTML email" do
-    email_html = File.open(File.join(Rails.root, 'spec', 'fixtures', 'google_alert_email.html')).read
+  it "parses a directly sent Google Alerts HTML email" do
+    email_html = File.open(File.join(Rails.root, 'spec', 'fixtures', 'direct_google_alert.html')).read
+
+    alert = GoogleAlert.new(email_html)
+
+    alert.should have(20).results
+
+    r = alert.results.first
+
+    r.link.should == "http://www.google.com/url?sa=X&q=http://online.wsj.com/article/SB10001424052702303753904577454780835071746.html&ct=ga&cad=CAcQAhgAIAAoATAAOABA_ZLN_gRIAVAAWABiBWVuLVVT&cd=CdqxpRMOlqU&usg=AFQjCNF8QeEc3FjZ0HH_kmyftTW_s236Eg"
+
+    r.title.should == "Where Dogs Rule the Roost"
+
+    r.source.should == "Wall Street Journal"
+
+    r.blurb.should == %{By SOPHIA HOLLANDER Counselor Julia Blair entertains a group of dogs at Wag Club, a dog spa and day-care center in Brooklyn. Luxury buildings in New York City have created an ever-lengthening check list in their amenities arm race. Child's playroom?}
+
+  end
+
+  it "parses a forwarded Google Alerts HTML email" do
+    email_html = File.open(File.join(Rails.root, 'spec', 'fixtures', 'forwarded_google_alert.html')).read
 
     alert = GoogleAlert.new(email_html)
 

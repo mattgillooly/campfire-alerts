@@ -15,9 +15,11 @@ class GoogleAlert
 
     doc = Nokogiri::HTML(html)
 
-    links = doc.css('a').select{|l| l['style'] == "color:#1111cc"}
+    styled_links = doc.css('a').select{|l| l['style']}
 
-    links.each do |link|
+    alert_links = styled_links.select{|l| l['style'].match(/color:\s?#?1111[cC][cC]/) }
+
+    alert_links.each do |link|
       desc = link.parent.at_css('font')
       source = desc.at_css('a')
 
