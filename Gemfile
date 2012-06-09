@@ -28,3 +28,4 @@ end
 gem 'pg'
 gem 'nokogiri'
 gem 'tinder'
+gem 'airbrake'
