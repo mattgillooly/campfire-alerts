@@ -1,5 +1,5 @@
 Given /^a Google Alert email$/ do
-  @google_alert_html = File.open(File.join(Rails.root, 'spec', 'fixtures', 'google_alert_email.html')).read
+  @google_alert_html = File.open(File.join(Rails.root, 'spec', 'fixtures', 'forwarded_google_alert.html')).read
 end
 
 When /^Postmark notifies us of the inbound email$/ do
