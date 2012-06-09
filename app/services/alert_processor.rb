@@ -5,11 +5,11 @@ class AlertProcessor
 
   def call(email)
     Rails.logger.info "starting AlertProcessor"
-    alert = GoogleAlert.new(CGI.unescapeHTML(email.body))
+    alert = GoogleAlert.new(email.html_body)
     chatter = Chatter.new
 
     alert.results.each do |result|
-      Rails.logger.info "Posting linkj: #{result}"
+      Rails.logger.info "Posting link: #{result}"
 
       Link.create!(
         url: result.link,

@@ -7,4 +7,14 @@ class Email < ActiveRecord::Base
   validates_presence_of :body, :from, :subject
 
   has_many :links
+
+  def html_body
+    return nil unless html?
+
+    if body.starts_with?('&lt;')
+      CGI.unescapeHTML(body)
+    else
+      body
+    end
+  end
 end

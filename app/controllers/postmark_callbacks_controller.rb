@@ -20,7 +20,7 @@ class PostmarkCallbacksController < ApplicationController
 
     email.save!
 
-    AlertProcessor.new.call(email)
+    AlertProcessor.new.call(email) if email.html?
 
     head :ok
   end
