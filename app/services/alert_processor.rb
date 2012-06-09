@@ -3,19 +3,20 @@ require 'chatter'
 
 class AlertProcessor
 
-  def call(alert_html)
+  def call(email)
     Rails.logger.info "starting AlertProcessor"
-    alert = GoogleAlert.new(alert_html)
+    alert = GoogleAlert.new(CGI.unescapeHTML(email.body))
     chatter = Chatter.new
 
     alert.results.each do |result|
-      Rails.logger.info "Posting link: #{result}"
+      Rails.logger.info "Posting linkj: #{result}"
 
       Link.create!(
         url: result.link,
         title: result.title,
         source: result.source,
-        blurb: result.blurb
+        blurb: result.blurb,
+        email: email
       )
 
       chatter.post_link(result.to_s)

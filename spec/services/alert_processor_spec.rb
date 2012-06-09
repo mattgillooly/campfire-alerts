@@ -3,7 +3,8 @@ require 'spec_helper'
 describe AlertProcessor do
 
   it "parses alert emails and posts links to the chat room" do
-    html = stub(:html)
+    html = "my big email body"
+    email = stub(:email, body: html)
 
     r1 = stub(:result, to_s: 'first result').as_null_object
     r2 = stub(:result, to_s: 'second result').as_null_object
@@ -19,7 +20,7 @@ describe AlertProcessor do
 
     Link.should_receive(:create!).twice
 
-    subject.call(html)
+    subject.call(email)
   end
 
 end

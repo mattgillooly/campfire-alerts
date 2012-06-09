@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe PostmarkCallbacksController do
 
-  let(:alert_body) { stub(:html) }
-  let(:email) { stub(:email, body: alert_body) }
+  let(:email) { stub(:email) }
 
   it "logs a POSTed email" do
     AlertProcessor.any_instance.stub(:call)
@@ -25,7 +24,7 @@ describe PostmarkCallbacksController do
   it "processes POSTed email for search alert links" do
     Email.stub(:create!).and_return(email)
 
-    AlertProcessor.any_instance.should_receive(:call).with(alert_body)
+    AlertProcessor.any_instance.should_receive(:call).with(email)
 
     post :create,
          'HtmlBody' => ''

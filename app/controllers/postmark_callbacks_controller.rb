@@ -11,7 +11,7 @@ class PostmarkCallbacksController < ApplicationController
                           from: params['From'],
                           body: email_body)
 
-    AlertProcessor.new.call(email.body)
+    AlertProcessor.new.call(email)
 
     head :ok
   end
