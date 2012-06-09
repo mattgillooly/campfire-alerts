@@ -2,16 +2,11 @@ require 'spec_helper'
 
 describe PostmarkCallbacksController do
 
-  let(:email) { stub(:email) }
-
   it "logs a POSTed email" do
     AlertProcessor.any_instance.stub(:call)
 
-    Email.should_receive(:create!).
-      with( subject: 'Hello',
-            body: 'Hi hi hi hi',
-            from: 'hey@example.com').
-      and_return(email)
+    Email.any_instance.should_receive(:body=).with('Hi hi hi hi')
+    Email.any_instance.should_receive(:save!)
 
     post :create,
          'Subject' => 'Hello',
@@ -22,14 +17,27 @@ describe PostmarkCallbacksController do
   end
 
   it "processes POSTed email for search alert links" do
-    Email.stub(:create!).and_return(email)
+    Email.any_instance.stub(:save!)
 
-    AlertProcessor.any_instance.should_receive(:call).with(email)
+    AlertProcessor.any_instance.should_receive(:call)
 
     post :create,
+         'HtmlBody' => 'asdf'
+
+    response.should be_success
+  end
+
+  it "skips processing POSTed email if body is plaintext-only" do
+    Email.any_instance.stub(:save!)
+
+    AlertProcessor.any_instance.should_receive(:call).never
+
+    post :create,
+         'TextBody' => 'asdf',
          'HtmlBody' => ''
 
     response.should be_success
   end
+
 
 end
