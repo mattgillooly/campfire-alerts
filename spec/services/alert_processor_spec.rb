@@ -4,7 +4,7 @@ describe AlertProcessor do
 
   it "parses alert emails and posts links to the chat room" do
     html = "my big email body"
-    email = stub(:email, body: html)
+    email = stub(:email, html_body: html)
 
     r1 = stub(:result, to_s: 'first result').as_null_object
     r2 = stub(:result, to_s: 'second result').as_null_object
