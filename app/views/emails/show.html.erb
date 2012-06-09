@@ -1,0 +1,12 @@
+<h1><%= @email.subject %></h1>
+<cite><%= @email.from %></cite>
+<p><%= @email.created_at %></p>
+
+<h2>Links</h2>
+<ul>
+  <% @email.links.each do |link| %>
+    <li><%= link_to link.title, link.url %></li>
+  <% end %>
+</ul>
+
+<%= @email.body.html_safe %>

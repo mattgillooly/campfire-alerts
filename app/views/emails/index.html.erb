@@ -1,0 +1,11 @@
+<h1>Emails</h1>
+
+<% @emails.each do |email| %>
+  <h2><%= link_to email.subject, email %></h2>
+
+  <p><%= email.links.count %> links found</p>
+
+  <cite><%= email.from %></cite>
+
+  <p><%= email.created_at %></p>
+<% end %>
