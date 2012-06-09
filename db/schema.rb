@@ -11,24 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609125535) do
+ActiveRecord::Schema.define(:version => 20120609171556) do
 
   create_table "emails", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.string   "from",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.boolean  "html"
+    t.string    "subject",    :null => false
+    t.text      "body",       :null => false
+    t.string    "from",       :null => false
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
+    t.boolean   "html"
   end
 
   create_table "links", :force => true do |t|
-    t.string   "url",        :null => false
-    t.string   "title",      :null => false
+    t.string   "url",        :limit => 1000, :null => false
+    t.string   "title",                      :null => false
     t.string   "source"
     t.text     "blurb"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "email_id"
   end
 
