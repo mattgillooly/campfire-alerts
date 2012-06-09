@@ -6,8 +6,15 @@ class PostmarkCallbacksController < ApplicationController
     logger.info "received web hook from Postmark"
 
     email = Email.new(subject: params['Subject'],
-                      from: params['From'],
-                      body: params['HtmlBody'])
+                      from: params['From'])
+
+    if params['HtmlBody'].present?
+      email.body = params['HtmlBody']
+      email.html = true
+    else
+      email.body = params['TextBody']
+      email.html = false
+    end
 
     logger.info "creating email: #{email.inspect}"
 
