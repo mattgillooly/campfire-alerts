@@ -31,3 +31,8 @@ If you're running on Heroku, you can set these variables using `heroku config` f
 
 Once you've deployed campfire-alerts to some publicly-accessible part of the web, you need to configure your Postmark account to post incoming alerts to your server.   Just [configure an inbound server](http://developer.postmarkapp.com/developer-inbound-configure.html) following Postmark's instructions.  If your web server is set up at http://campfire-alerts.example.com/, then your webhook URL will be http://campfire-alerts.example.com/postmark_callbacks
 
+
+## Hosted Application
+
+If you are interested in using a hosted version of this application, sign up for our [newsletter on TinyLetter](https://tinyletter.com/campfire-alerts).
+
