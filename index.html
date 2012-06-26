@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Campfire Alerts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Matt Gillooly">
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 30px;
+      }
+    </style>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span8">
+
+          <div class="hero-unit">
+            <h1>Campfire Alerts</h1>
+            <p>Uses Postmark to process Google Alerts emails, and post the new results to a Campfire chatroom.  Prompted by <a href="http://blog.postmarkapp.com/post/24474853026/contest-bring-google-alerts-into-campfire-using">Postmark's API contest</a>.</p>
+            <p>
+              <a class="btn btn-primary btn-large" href="https://github.com/mattgillooly/campfire-alerts">
+                Get Code
+              </a>
+            </p>
+          </div>
+
+          <h2>Campfire Setup</h2>
+          <p>For the smoothest experience, I recommend creating a new user in your Campfire account just for alerts.  If you are logged into Campfire as the same user that you have configured on campfire-alerts, you will not always see alerts as soon as they post into the room.</p>
+          <p>You will need to set a few environment variables to tell campfire-alerts how to connect to your Campfire room.</p>
+
+<dl>
+  <dt>ENV['CAMPFIRE_SUBDOMAIN']</dt>
+  <dd>The subdomain of your Campfire account.</dd>
+
+  <dt>ENV['CAMPFIRE_AUTH_TOKEN']</dt>
+  <dd>Your API authentication token.  Find it by clicking the "My info" link in the upper-right of the Campfire UI.</dd>
+
+  <dt>ENV['CAMPFIRE_ROOM_NAME']</dt>
+  <dd>The name of the room to post alerts into.</dd>
+</dl>
+
+<p>
+If you're running on Heroku, you can set these variables using <code>heroku config</code> from the commandline.  <a href="https://devcenter.heroku.com/articles/config-vars">https://devcenter.heroku.com/articles/config-vars</a>
+</p>
+
+
+<h2>Postmark Setup</h2>
+<p>Once you've deployed campfire-alerts to some publicly-accessible part of the web, you need to configure your Postmark account to post incoming alerts to your server.   Just <a href="http://developer.postmarkapp.com/developer-inbound-configure.html">configure an inbound server</a> following Postmark's instructions.  If your web server is set up at http://campfire-alerts.example.com/, then your webhook URL will be http://campfire-alerts.example.com/postmark_callbacks</p>
+        </div>
+
+        <div class="span4">
+
+          <h2>Hosted Application</h2>
+
+          <p>
+          If you are interested in using a hosted version of this application, sign up for our newsletter.
+          </p>
+
+          <form action="https://tinyletter.com/campfire-alerts" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/campfire-alerts', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+            <p>
+              <label for="tlemail">Enter your email address</label>
+            </p>
+            <p>
+              <input type="text" style="width:140px" name="email" id="tlemail" />
+            </p>
+
+            <input type="hidden" value="1" name="embed"/>
+            <input type="submit" value="Subscribe" />
+
+            <p><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p>
+          </form>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+</body></html>
