@@ -9,10 +9,9 @@ describe AlertProcessor do
     r1 = stub(:result, to_s: 'first result').as_null_object
     r2 = stub(:result, to_s: 'second result').as_null_object
 
-    alert = stub(:alert, results: [r1, r2])
     chatter = stub(:chatter)
 
-    GoogleAlert.stub(:new).with(html).and_return(alert)
+    GoogleAlerts.stub(:parse_email).with(html).and_return([r1, r2])
     Chatter.stub(:new).and_return(chatter)
 
     chatter.should_receive(:post_link).with(r1.to_s)

@@ -75,6 +75,10 @@ GEM
     ffi (1.0.11)
     gherkin (2.10.0)
       json (>= 1.4.6)
+    google_alerts (0.0.1)
+      nokogiri
+      rake
+      rspec
     hashie (1.2.0)
     hike (1.2.1)
     http_parser.rb (0.5.3)
@@ -189,6 +193,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
+  google_alerts (~> 0.0.1)
   jquery-rails
   nokogiri
   pg
